@@ -1,0 +1,16 @@
+{
+  "endpoint": "http://209.97.130.234.xip.io",
+  "expires_at": "2020-08-27",
+  "login": "root",
+  "name": "terraform",
+  "password": "egeneralov",
+  "scopes": {
+    "personal_access_token[scopes][]": [
+      "api",
+      "sudo",
+      "read_user",
+      "read_repository"
+    ]
+  }
+}
+

@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+from flask import Flask, Response, jsonify, request
+from gitlab import GitlabCreatePAT
+
+app = Flask(__name__)
+
+@app.route('/', methods = ['GET'])
+def ok():
+  with open('README.md') as f:
+    return f.read()
+
+
+@app.route('/', methods = ['POST'])
+def proceed():
+  try:
+    payload = request.get_json(force=True)
+  except Exception as e:
+    return jsonify({
+        "ok": False,
+        "result": None,
+        "error": str(e)
+      }), 400
+
+  config = {
+    "name": "",
+    "expires_at": "2020-08-27",
+    "endpoint": "http://gitlab.com",
+    "login": "",
+    "password": "",
+    "scopes": {
+      'personal_access_token[scopes][]': [
+        'api',
+        'sudo',
+        'read_user',
+        'read_repository'
+      ]
+    }
+  }
+
+  try:
+    config.update(**payload)
+  except Exception as e:
+    return jsonify({
+        "ok": False,
+        "result": None,
+        "error": str(e)
+      }), 400
+
+  try:
+    some = GitlabCreatePAT(**config)
+    return jsonify({
+        "ok": False,
+        "result": some.token,
+        "error": None
+      }), 200
+  except Exception as e:
+    return jsonify({
+        "ok": False,
+        "result": None,
+        "error": str(e)
+      }), 500
+
+
+if __name__ == '__main__':
+  app.run(
+    host = '0.0.0.0',
+    port = os.environ.get('PORT', '8080'),
+    debug = False
+  )
