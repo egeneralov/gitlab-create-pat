@@ -16,9 +16,6 @@ function check_deps() {
 
 function parse_input() {
   eval "$(jq -r '@sh "export DOMAIN=\(.domain) USER=\(.user) PASSWORD=\(.password)"')"
-#   if [[ -z "${DOMAIN}" ]]; then export DOMAIN=none; fi
-#   if [[ -z "${USER}" ]]; then export USER=none; fi
-#   if [[ -z "${PASSWORD}" ]]; then export PASSWORD=none; fi
 }
 
 create_token () {
@@ -29,11 +26,6 @@ create_token () {
   ERROR=$(echo ${ANSWER} | jq -Mr .error)
   echo ${ERROR} | grep null >/dev/null 2>&1 || echo "Recived ${ANSWER} from https://gitlab-create-pat.herokuapp.com/. Payload ${PAYLOAD}." >&2
 
-  echo $ANSWER >> some.log
-  echo "DEBUG: DOMAIN: $DOMAIN" >> some.log
-  echo "DEBUG: USER: $USER" >> some.log
-  echo "DEBUG: PASSWORD: $PASSWORD" >> some.log
-
 }
 
 function produce_output() {
@@ -41,10 +33,6 @@ function produce_output() {
 }
 
 check_deps
-echo "DEBUG: DOMAIN: $DOMAIN" 1>&2
-echo "DEBUG: USER: $USER" 1>&2
-echo "DEBUG: PASSWORD: $PASSWORD" 1>&2
 parse_input
 create_token
 produce_output
-# echo ${ANSWER} 1>&2
