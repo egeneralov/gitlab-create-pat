@@ -66,6 +66,7 @@ def proceed():
 
 
 if __name__ == '__main__':
+  os.environ['PYTHONHTTPSVERIFY'] = '0'
   app.run(
     host = '0.0.0.0',
     port = os.environ.get('PORT', '8080'),
