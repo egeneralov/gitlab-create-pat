@@ -22,7 +22,8 @@ def proceed():
     return jsonify({
         "ok": False,
         "result": None,
-        "error": str(e)
+        "error": str(e),
+        "message": "payload"
       }), 400
 
   config = {
@@ -47,7 +48,8 @@ def proceed():
     return jsonify({
         "ok": False,
         "result": None,
-        "error": str(e)
+        "error": str(e),
+        "message": "config.update"
       }), 400
 
   try:
@@ -58,10 +60,13 @@ def proceed():
         "error": None
       }), 200
   except Exception as e:
+    print(e)
+    print(dir(e))
     return jsonify({
         "ok": False,
         "result": None,
-        "error": str(e)
+        "error": str(e),
+        "message": "GitlabCreatePAT"
       }), 500
 
 
@@ -71,4 +76,6 @@ if __name__ == '__main__':
     host = '0.0.0.0',
     port = os.environ.get('PORT', '8080'),
     debug = False
-  )
+)
+
+
