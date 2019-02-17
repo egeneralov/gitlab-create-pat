@@ -3,8 +3,22 @@
 
 import os
 import sys
+import logging
 from flask import Flask, Response, jsonify, request
 from gitlab import GitlabCreatePAT
+
+
+logging.basicConfig(
+  **{
+    'level': logging.INFO,
+    'format': '{"time": "%(asctime)s", "filename":"%(filename)s", "line":"%(lineno)d", "level":"%(levelname)s", "message": "%(message)s"}',
+  },
+  handlers = [
+#    logging.FileHandler(filename='{}/history.log'.format(base_dir)),
+    logging.StreamHandler(sys.stdout)
+  ]
+)
+
 
 app = Flask(__name__)
 
