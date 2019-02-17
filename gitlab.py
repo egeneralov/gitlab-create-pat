@@ -61,8 +61,8 @@ class GitlabCreatePAT:
       data = data,
       cookies = self.cookies1
     )
-#     logging.debug(str(r.history))
-#     logging.debug(str(r.cookies))
+    logging.debug(str(r.history))
+    logging.debug(str(r.cookies))
     self.cookies2 = r.cookies
     logging.debug('cookies2: {}'.format(self.cookies2))
     self.csrf2 = self.find_csrf_token(r.text)
@@ -85,7 +85,7 @@ class GitlabCreatePAT:
       cookies = self.cookies2
     )
     soup = BeautifulSoup(r.text, "lxml")
-    logging.debug('soup: {}'.format(data))
+    logging.debug('soup: {}'.format(r.text))
     self.token = soup.find('input', id='created-personal-access-token').get('value')
     logging.debug('token: {}'.format(self.token))
 
