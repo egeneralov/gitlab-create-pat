@@ -61,9 +61,9 @@ class GitlabCreatePAT:
       data = data,
       cookies = self.cookies1
     )
-    logging.debug(str(r.history))
-    logging.debug(str(r.cookies))
-    self.cookies2 = r.cookies
+#     logging.debug(str(r.history))
+#     logging.debug(str(r.cookies))
+    self.cookies2 = r.history[0].cookies
     logging.debug('cookies2: {}'.format(self.cookies2))
     self.csrf2 = self.find_csrf_token(r.text)
     logging.debug('csrf2: {}'.format(self.csrf2))

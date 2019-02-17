@@ -9,10 +9,8 @@ from gitlab import GitlabCreatePAT
 
 
 logging.basicConfig(
-  **{
-    'level': logging.DEBUG,
-    'format': '{"time": "%(asctime)s", "filename":"%(filename)s", "line":"%(lineno)d", "level":"%(levelname)s", "message": "%(message)s"}',
-  },
+  level = logging.INFO,
+  format = '{"time": "%(asctime)s", "filename":"%(filename)s", "line":"%(lineno)d", "level":"%(levelname)s", "message": "%(message)s"}',
   handlers = [
 #    logging.FileHandler(filename='{}/history.log'.format(base_dir)),
     logging.StreamHandler(sys.stdout)
