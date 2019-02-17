@@ -26,7 +26,7 @@ class GitlabCreatePAT:
 
 
   def find_csrf_token(self, text):
-    logging.debug('find_csrf_token: {}'.format(text))
+    logging.debug('find_csrf_token')
     soup = BeautifulSoup(text, "lxml")
     logging.debug('recived soup')
     token = soup.find(attrs={"name": "csrf-token"})
