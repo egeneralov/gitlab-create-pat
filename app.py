@@ -10,7 +10,7 @@ from gitlab import GitlabCreatePAT
 
 logging.basicConfig(
   **{
-    'level': logging.INFO,
+    'level': logging.DEBUG,
     'format': '{"time": "%(asctime)s", "filename":"%(filename)s", "line":"%(lineno)d", "level":"%(levelname)s", "message": "%(message)s"}',
   },
   handlers = [
