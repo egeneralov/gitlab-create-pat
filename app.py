@@ -66,22 +66,22 @@ def proceed():
         "message": "config.update"
       }), 400
 
-  try:
-    some = GitlabCreatePAT(**config)
-    return jsonify({
-        "ok": False,
-        "result": some.token,
-        "error": None
-      }), 200
-  except Exception as e:
-    print(e)
-    print(dir(e))
-    return jsonify({
-        "ok": False,
-        "result": None,
-        "error": str(e),
-        "message": "GitlabCreatePAT"
-      }), 500
+#   try:
+  some = GitlabCreatePAT(**config)
+  return jsonify({
+      "ok": False,
+      "result": some.token,
+      "error": None
+    }), 200
+#   except Exception as e:
+#     print(e)
+#     print(dir(e))
+#     return jsonify({
+#         "ok": False,
+#         "result": None,
+#         "error": str(e),
+#         "message": "GitlabCreatePAT"
+#       }), 500
 
 
 if __name__ == '__main__':
