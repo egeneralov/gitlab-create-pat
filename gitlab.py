@@ -62,9 +62,9 @@ class GitlabCreatePAT:
       cookies = self.cookies1
     )
     self.cookies2 = r.history[0].cookies
-    logging.debug('cookies2: {}'.format(cookies2))
+    logging.debug('cookies2: {}'.format(self.cookies2))
     self.csrf2 = self.find_csrf_token(r.text)
-    logging.debug('csrf2: {}'.format(csrf2))
+    logging.debug('csrf2: {}'.format(self.csrf2))
 
 
   def obtain_personal_access_token(self):
