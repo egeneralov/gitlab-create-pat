@@ -30,7 +30,7 @@ def ok():
 def proceed():
   try:
     payload = request.get_json(force=True)
-    logging.info(payload)
+#     logging.info(payload)
   except Exception as e:
     return jsonify({
         "ok": False,
