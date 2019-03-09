@@ -26,7 +26,7 @@ class GitlabCreatePAT:
 
 
   def find_csrf_token(self, text):
-    logging.debug('find_csrf_token: {}'.format(text))
+#     logging.debug('find_csrf_token: {}'.format(text))
     soup = BeautifulSoup(text, "lxml")
     logging.debug('recived soup')
     token = soup.find(attrs={"name": "csrf-token"})
@@ -41,6 +41,9 @@ class GitlabCreatePAT:
   def obtain_csrf_token(self):
     logging.debug('obtain_csrf_token')
     r = requests.get(self.root_route)
+    if r.url == "https://about.gitlab.com/":
+      logging.warning("https://about.gitlab.com/")
+      r = requests.get(self.sign_in_route)
     self.csrf1 = self.find_csrf_token(r.text)
     self.cookies1 = r.cookies
 
@@ -85,7 +88,7 @@ class GitlabCreatePAT:
       cookies = self.cookies2
     )
     soup = BeautifulSoup(r.text, "lxml")
-    logging.debug('soup: {}'.format(r.text))
+#     logging.debug('soup: {}'.format(r.text))
     self.token = soup.find('input', id='created-personal-access-token').get('value')
     logging.debug('token: {}'.format(self.token))
 
